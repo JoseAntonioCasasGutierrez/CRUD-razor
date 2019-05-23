@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Empleados>
+@{
+    Layout = "_Layout";
+    var title = "Empleados";
+    ViewData["Title"] = title;
+}
+<h2>@title</h2>
+<h3><a asp-action="Create" class="btn btn-sm btn-secondary" style="border-color:white;color:white">Create</a></h3>
+
+<table class="table table-bordered table-sm table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Habilidades</th>
+            <th>Salario</th>
+            <th>FechaContratacion</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model == null)
+        {
+            <tr>
+                <td colspan="8" class="text-center">No Model Data</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var p in Model)
+            {
+            <tr>
+                <td>@p.Id</td>
+                <td>@p.Nombre</td>
+                <td>@p.Habilidades</td>
+                <td>@string.Format(new System.Globalization.CultureInfo("en-US"), "{0:C2}", p.Salario)</td>
+                <td>@string.Format("{0:dddd, dd MMMM yyyy}",p.FechaContratacion)</td>
+
+                <td><a asp-action="Update" asp-route-id="@p.Id" style="color:chocolate" >Update</a></td>
+                <td>
+                    <form asp-action="Delete" method="post" asp-route-id="@p.Id" style="color:chocolate">
+                        <button>Delete</button>
+                    </form>
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
