@@ -1,17 +1,59 @@
-﻿@{
-    ViewData["Title"] = "Contact";
+﻿@model IEnumerable<SalaJuntas>
+@{
+    Layout = "_Layout";
+    var title = "SalaJuntas";
+    ViewData["Title"] = title;
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+<h2>@title</h2>
+<h4><a asp-action="Contact2" class="btn btn-sm btn-secondary" style="border-color:white;color:white">Generar PDF</a></h4>
+<h3><a asp-action="Create2" class="btn btn-sm btn-secondary" style="border-color:white;color:white">Create</a></h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
 
-<address>
-    <strong>Support:</strong> <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<table class="table table-bordered table-sm table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Sala</th>
+            <th>NombreEmpleado</th>
+            <th>FeachaRecepcion</th>
+            <th>TotalPersonas</th>
+            <th>TotalHoras</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model == null)
+        {
+            <tr>
+                <td colspan="8" class="text-center">No Model Data</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.Sala</td>
+                    <td>@p.NombreEmpleado</td>
+                    <td>@string.Format("{0:dddd, dd MMMM yyyy}", p.FechaRecepcion)</td>
+                    <td>@p.TotalPersonas</td>
+                    <td>@p.Horas</td>
+
+                    <td><a asp-action="Update2" asp-route-id="@p.Id" style="color:chocolate">Update</a></td>
+                    <td>
+                        <form asp-action="Delete2" method="post" asp-route-id="@p.Id" style="color:chocolate">
+                            <button>Delete</button>
+                        </form>
+                    </td>
+
+                </tr>
+            }
+
+        }
+
+    </tbody>
+
+</table>
+
+

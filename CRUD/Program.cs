@@ -21,4 +21,6 @@ namespace CRUD
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }
+
+    
 }
