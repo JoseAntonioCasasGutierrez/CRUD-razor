@@ -27,7 +27,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="Habilidades" class="control-label"></label>
-                <input asp-for="Habilidades" class="form-control" />
+                <select asp-for="Habilidades" class="form-control">
+                    <option disabled>Selecciona una opción</option>
+                    <option>Programacion Web</option>
+                    <option>Promacion Orientada Objetos</option>
+                    <option>Redes</option>
+                    <option>Aplicaciones Moviles</option>
+
+
+                </select>
                 <span asp-validation-for="Habilidades" class="text-danger"></span>
             </div>
             <div class="form-group">
