@@ -363,6 +363,9 @@ namespace CRUD.Controllers
                         salajuntas.Sala = Convert.ToString(dataReader["Sala"]);
                         salajuntas.NombreEmpleado = Convert.ToString(dataReader["NombreEmpleado"]);
                         salajuntas.FechaRecepcion = Convert.ToDateTime(dataReader["FechaRecepcion"]);
+                        salajuntas.TotalPersonas = Convert.ToInt32(dataReader["TotalPersonas"]);
+                        salajuntas.Horas = Convert.ToInt32(dataReader["Horas"]);
+
                         salajuntasList.Add(salajuntas);
                     }
                 }
